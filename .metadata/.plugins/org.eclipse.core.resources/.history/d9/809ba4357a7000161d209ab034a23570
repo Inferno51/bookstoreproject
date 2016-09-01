@@ -1,0 +1,12 @@
+package com.bookstore;
+
+public class Book {
+	
+	private int bookID = 0;
+	private int bookCount = 0;
+	private double bookPrice = 0.0d;
+	private String bookName = null;
+	private String bookDesc = null;
+	
+	
+}

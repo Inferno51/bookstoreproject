@@ -1,0 +1,28 @@
+package com.bookstore;
+
+public class Book {
+	
+	private int bookID = 0;
+	private int bookCount = 0;
+	private double bookPrice = 0.0d;
+	private String bookName = null;
+	private String bookDesc = null;
+	
+	// Constructor
+	public Book(int bookID, int bookCount, double bookPrice, String bookName, String bookDesc) {
+		super();
+		this.bookID = bookID;
+		this.bookCount = bookCount;
+		this.bookPrice = bookPrice;
+		this.bookName = bookName;
+		this.bookDesc = bookDesc;
+	} // Constructor
+
+	// Blank constructor
+	public Book() {
+		super();
+	} // Blank constructor
+	
+	
+	
+}
