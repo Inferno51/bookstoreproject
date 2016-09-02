@@ -1,0 +1,11 @@
+book_id,book_name,book_price,book_inv_count,book_desc
+1,"The Lord of the Rings - The Fellowship of the Ring",8.99,10,"First book in the Lord of the Rings"
+2,"The Lord of the Rings - The Two Towers",8.99,10,"Second book in the Lord of the Rings"
+3,"The Lord of the Rings - The Return of the King",8.99,10,"Third book in the Lord of the Rings"
+4,"The Hobbit",9.99,10,"Precursor to the Lord of the Rings"
+5,"The Horus Heresy - Horus Rising",12.99,10,"First book in the Horus Heresy series"
+6,"The Horus Heresy - False Gods",12.99,8,"Second book in the Horus Heresy series"
+7,"The Horus Heresy - Galaxy in Flames",12.99,12,"Third book in the Horus Heresy series"
+8,"The Horus Heresy - Flight of the Eisenstein",12.99,13,"Fourth book in the Horus Heresy series"
+9,"The Horus Heresy - Fulgrim",12.99,6,"Fifth book in the Horus Heresy series"
+10,"The Horus Heresy - Descent of Angels",12.99,5,"Sixth book in the Horus Heresy series"
