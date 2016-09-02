@@ -1,0 +1,89 @@
+package com.bookstore;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+public class DAO {
+	
+	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+	static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/?user=root&autoReconnect=true&useSSL=false";
+	static final String USER = "root";
+	static final String PASSWORD = "sesame";
+	
+	static Connection CONN = null;
+	static Statement STMT = null;
+	static PreparedStatement PREP = null;
+	static ResultSet RES = null;
+	
+	public static void connToDB() {
+		try {
+			Class.forName(JDBC_DRIVER);
+			CONN = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} // Try connection statement
+	} // connToDB
+	
+	public static void readFromDB() {
+		connToDB();
+		
+		ArrayList<Book> ourBooks = new ArrayList<>();
+		
+		try {
+			STMT = CONN.createStatement();
+			RES = STMT.executeQuery("SELECT * FROM products.books;");
+			
+			while (RES.next()) {
+				Book myBook = new Book();
+				myBook.setBookID(RES.getInt("book_id"));
+				myBook.setBookName(RES.getString("book_name"));
+				myBook.setBookPrice(RES.getDouble("book_price"));
+				myBook.setBookCount(RES.getInt("book_inv_count"));
+				myBook.setBookDesc(RES.getString("movie_desc"));
+				
+				ourBooks.add(myBook);
+				
+			}
+			
+			for (Book book : ourBooks) {
+				System.out.println(book.toString());
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	} // readFromDB
+	
+	public static void writeToDB(Book newBook) {
+		
+		Book bookToAdd = new Book();
+		
+		bookToAdd = newBook;
+		
+		try {
+			connToDB();
+			
+			PREP = CONN.prepareStatement(insertIntoTable);
+			
+			PREP.setString(1, bookToAdd.getBookName());
+			PREP.setDouble(2, bookToAdd.getBookPrice());
+			PREP.setInt(3, bookToAdd.getBookCount());
+			PREP.setString(4, bookToAdd.getBookDesc());
+			
+			System.out.println(PREP);
+			
+			PREP.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private static 
+	
+	private static String insertIntoTable = "INSERT INTO `products`.`movies` "
+			+ "(book_name, book_price, book_inv_count, book_desc)"
+			+ " VALUES "
+			+ "(?, ?, ?, ?)";
+}

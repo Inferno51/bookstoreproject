@@ -14,6 +14,7 @@ public class DAO {
 	static Statement STMT = null;
 	static PreparedStatement PREP = null;
 	static ResultSet RES = null;
+	public static ArrayList<Book> ourBooks = new ArrayList<>();
 	
 	public static void connToDB() {
 		try {
@@ -27,7 +28,7 @@ public class DAO {
 	public static void readFromDB() {
 		connToDB();
 		
-		ArrayList<Book> ourBooks = new ArrayList<>();
+		
 		
 		try {
 			STMT = CONN.createStatement();
@@ -39,7 +40,7 @@ public class DAO {
 				myBook.setBookName(RES.getString("book_name"));
 				myBook.setBookPrice(RES.getDouble("book_price"));
 				myBook.setBookCount(RES.getInt("book_inv_count"));
-				myBook.setBookDesc(RES.getString("movie_desc"));
+				myBook.setBookDesc(RES.getString("book_desc"));
 				
 				ourBooks.add(myBook);
 				
@@ -54,4 +55,74 @@ public class DAO {
 		}
 	} // readFromDB
 	
+	private static String insertIntoTable = "INSERT INTO `products`.`books` "
+			+ "(book_name, book_price, book_inv_count, book_desc)"
+			+ " VALUES "
+			+ "(?, ?, ?, ?)";
+	
+	public static void writeToDB(Book newBook) {
+		
+		Book bookToAdd = new Book();
+		
+		bookToAdd = newBook;
+		
+		try {
+			connToDB();
+			
+			PREP = CONN.prepareStatement(insertIntoTable);
+			
+			PREP.setString(1, bookToAdd.getBookName());
+			PREP.setDouble(2, bookToAdd.getBookPrice());
+			PREP.setInt(3, bookToAdd.getBookCount());
+			PREP.setString(4, bookToAdd.getBookDesc());
+			
+			System.out.println(PREP);
+			
+			PREP.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private static String updateDB = ("UPDATE `products`.`books` SET `book_name` = ?, `book_price` = ?, `book_inv_count` = ?, `book_desc` = ? WHERE `book_id` = ?");
+	
+	public static void updateDB(Book newBook) {
+		
+		readFromDB();
+		
+		Book bookToUpdate = new Book();
+		
+		bookToUpdate = newBook;
+		
+		try {
+			PREP = CONN.prepareStatement(updateDB);
+			
+			PREP.setString(1, bookToUpdate.getBookName());
+			PREP.setDouble(2, bookToUpdate.getBookPrice());
+			PREP.setInt(3, bookToUpdate.getBookCount());
+			PREP.setString(4, bookToUpdate.getBookDesc());
+			PREP.setInt(5, bookToUpdate.getBookID());
+			
+			PREP.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	} // updateDB
+	
+	public static void deleteFromDatabase(Book newBook) {
+		Book bookToDelete = new Book();
+		bookToDelete = newBook;
+		
+		try {
+			connToDB();
+			PREP = CONN.prepareStatement("DELETE FROM `products`.`books` WHERE book_ID = ?");
+			PREP.setInt(1, bookToDelete.getBookID());
+			PREP.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	} // deleteFromDatabase
 }
