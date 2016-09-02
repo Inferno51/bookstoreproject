@@ -32,3 +32,12 @@
 127.0.0.1 - - [02/Sep/2016:10:47:49 -0400] "GET / HTTP/1.1" 404 998
 0:0:0:0:0:0:0:1 - - [02/Sep/2016:10:47:50 -0400] "GET /bookstore/readfromdb.jsp HTTP/1.1" 200 4154
 0:0:0:0:0:0:0:1 - - [02/Sep/2016:10:48:13 -0400] "GET /bookstore/deletebook.html HTTP/1.1" 200 1946
+127.0.0.1 - - [02/Sep/2016:10:51:11 -0400] "GET / HTTP/1.1" 404 998
+0:0:0:0:0:0:0:1 - - [02/Sep/2016:10:51:12 -0400] "GET /bookstore/index.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [02/Sep/2016:10:51:45 -0400] "GET /bookstore/readfromdb.jsp HTTP/1.1" 200 4154
+0:0:0:0:0:0:0:1 - - [02/Sep/2016:10:51:56 -0400] "GET /bookstore/addbook.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [02/Sep/2016:10:52:07 -0400] "POST /bookstore/AddToDB HTTP/1.1" 200 2904
+0:0:0:0:0:0:0:1 - - [02/Sep/2016:10:52:12 -0400] "GET /bookstore/readfromdb.jsp HTTP/1.1" 200 4321
+0:0:0:0:0:0:0:1 - - [02/Sep/2016:10:52:19 -0400] "GET /bookstore/deletebook.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [02/Sep/2016:10:52:22 -0400] "POST /bookstore/DeleteFromDB HTTP/1.1" 200 1946
+0:0:0:0:0:0:0:1 - - [02/Sep/2016:10:52:23 -0400] "GET /bookstore/readfromdb.jsp HTTP/1.1" 200 4154

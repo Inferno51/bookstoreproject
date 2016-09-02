@@ -45,7 +45,7 @@ public class DeleteFromDB extends HttpServlet {
 		
 		com.bookstore.DAO.deleteFromDatabase(deleteFromDB);
 		
-		request.getRequestDispatcher("deletebook.html").forward(request, response);
+		request.getRequestDispatcher("readfromdb.jsp").forward(request, response);
 	}
 
 }

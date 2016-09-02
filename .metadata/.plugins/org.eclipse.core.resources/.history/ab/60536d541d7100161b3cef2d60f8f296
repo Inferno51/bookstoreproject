@@ -48,7 +48,7 @@ public class AddToDB extends HttpServlet {
 		
 		com.bookstore.DAO.writeToDB(addToDB);
 		
-		request.getRequestDispatcher("readfromdb.jsp").forward(request, response);
+		request.getRequestDispatcher("addbook.html").forward(request, response);
 		
 	}
 
