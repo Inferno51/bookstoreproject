@@ -28,7 +28,6 @@
 					<li><a href="index.html">Home</a></li>
 					<li class="active"><a href="readfromdb.jsp">View Database</a></li>
 					<li><a href="addbook.html">Add Book</a></li>
-					<li><a href="deletebook.html">Delete Book</a></li>
 				</ul>
 				<br>
 			</div>
@@ -43,9 +42,29 @@
 					<h3>Inventory</h3>
 					<p>Below is our current inventory! To add or delete a book,
 						click one of the below buttons.</p>
-					<br> <a href="addbook.html" class="btn btn-success"
-						role="button">Add Book!</a> <a href="deletebook.html"
-						class="btn btn-danger" role="button">Delete Book!</a>
+					<br> 
+					<a href="addbook.html" class="btn btn-success" role="button">Add Book!</a> 
+					<br>
+					<div class="dropdown" id="deleteDropDown">
+					    <form id="deleting" action="DeleteFromDB2" method="POST">    
+							    <select name="deletename" onchange="this.form.submit()">
+							    	<option selected="selected" style="display:none">Select a Book to Delete.</option>
+							    	<%
+										com.bookstore.DAO.readFromDB();
+									%>
+									<%
+										Book readToJSP = new Book();
+										
+										
+										for (int i = 0; i < DAO.ourBooks.size(); i++) {
+											readToJSP = DAO.ourBooks.get(i);
+									%>
+									<option><%=readToJSP.getBookName()%></option>
+									<% } %>
+							    </select>
+					    </form>
+				  	</div>
+					
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -57,22 +76,18 @@
 							</tr>
 						</thead>
 						<tbody>
-
 							<%
-								com.bookstore.DAO.readFromDB();
-							%>
-							<%
-								Book readToJSP = new Book();
-
-								for (int i = 0; i < DAO.ourBooks.size(); i++) {
-									readToJSP = DAO.ourBooks.get(i);
+								Book displayBook = new Book();
+							
+								for (int j = 0; j < DAO.ourBooks.size(); j++) {
+									displayBook = DAO.ourBooks.get(j);
 							%>
 							<tr>
-								<td><%=readToJSP.getBookID() %></td>
-								<td><%=readToJSP.getBookName()%></td>
-								<td><%=readToJSP.getBookPrice()%></td>
-								<td><%=readToJSP.getBookCount()%></td>
-								<td><%=readToJSP.getBookDesc()%></td>
+								<td><%=displayBook.getBookID()%></td>
+								<td><%=displayBook.getBookName()%></td>
+								<td><%=displayBook.getBookPrice()%></td>
+								<td><%=displayBook.getBookCount()%></td>
+								<td><%=displayBook.getBookDesc()%></td>
 							</tr>
 							<%
 								}
@@ -81,6 +96,7 @@
 
 						</tbody>
 					</table>
+					
 			</div>
 		</div>
 	</div>

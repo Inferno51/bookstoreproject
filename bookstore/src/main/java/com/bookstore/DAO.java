@@ -125,4 +125,18 @@ public class DAO {
 			e.printStackTrace();
 		}
 	} // deleteFromDatabase
+	
+	public static void deleteFromDatabaseList(Book newBook) {
+		Book bookToDelete = new Book();
+		bookToDelete = newBook;
+		
+		try {
+			connToDB();
+			PREP = CONN.prepareStatement("DELETE FROM `products`.`books` WHERE book_name = ?");
+			PREP.setString(1, bookToDelete.getBookName());
+			PREP.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	} // deleteFromDatabase
 }
