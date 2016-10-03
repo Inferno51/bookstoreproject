@@ -59,7 +59,7 @@
 										for (int i = 0; i < DAO.ourBooks.size(); i++) {
 											readToJSP = DAO.ourBooks.get(i);
 									%>
-									<option><%=readToJSP.getBookName()%></option>
+									<option><%= readToJSP.getBookID() %> <%=readToJSP.getBookName()%></option>
 									<% } %>
 							    </select>
 					    </form>
